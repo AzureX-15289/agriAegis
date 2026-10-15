@@ -4,8 +4,7 @@ import { PrescriptionSchema, DiagnoseRequestSchema } from "@/lib/schemas";
 import { AGRI_SYSTEM_PROMPT } from "@/lib/prompts";
 import { withModelFallback, resolveModel } from "@/lib/model";
 
-export const runtime = "edge";
-export const maxDuration = 60;
+export const maxDuration = 90;
 
 export async function POST(req: NextRequest) {
   try {
@@ -22,6 +21,7 @@ export async function POST(req: NextRequest) {
     const { imageBase64, mimeType, userNote, language } = parsed.data;
 
     const object = await withModelFallback(async (modelName) => {
+      console.log(`[AgriAegis /diagnose] model=${modelName} lang=${language}`);
       const { object } = await generateObject({
         model: resolveModel(modelName),
         schema: PrescriptionSchema,
@@ -32,10 +32,13 @@ export async function POST(req: NextRequest) {
             content: [
               {
                 type: "text",
-                text: `Analyze this crop image and return a structured prescription.
-User note: ${userNote ?? "None."}`,
+                text: `Analyze this crop image and return a structured prescription.\nUser note: ${userNote ?? "None."}`,
               },
-              { type: "image", image: imageBase64, mediaType: mimeType },
+              {
+                type: "image",
+                image: imageBase64,
+                mediaType: mimeType,
+              },
             ],
           },
         ],
@@ -46,7 +49,7 @@ User note: ${userNote ?? "None."}`,
     return Response.json({ ok: true, prescription: object });
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Diagnosis failed";
-    console.error("[AgriAegis /diagnose]", err);
+    console.error("[AgriAegis /diagnose] FULL ERROR:", message);
     return Response.json({ error: message }, { status: 500 });
   }
 }

@@ -2,10 +2,9 @@ import { streamText } from "ai";
 import { NextRequest } from "next/server";
 import { ChatRequestSchema } from "@/lib/schemas";
 import { CHAT_SYSTEM_PROMPT } from "@/lib/prompts";
-import { resolveModel, PRIMARY_MODEL } from "@/lib/model";
+import { resolveModel, CHAT_MODEL } from "@/lib/model";
 
-export const runtime = "edge";
-export const maxDuration = 30;
+export const maxDuration = 90;
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,18 +19,20 @@ export async function POST(req: NextRequest) {
     }
 
     const { messages, language } = parsed.data;
+    console.log(`[AgriAegis /chat] model=${CHAT_MODEL} lang=${language}`);
 
     const result = streamText({
-      model: resolveModel(PRIMARY_MODEL),
+      model: resolveModel(CHAT_MODEL),
       system: CHAT_SYSTEM_PROMPT(language),
       messages,
       temperature: 0.3,
+      maxOutputTokens: 250,
     });
 
     return result.toTextStreamResponse();
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Chat failed";
-    console.error("[AgriAegis /chat]", err);
+    console.error("[AgriAegis /chat] FULL ERROR:", message);
     return Response.json({ error: message }, { status: 500 });
   }
 }
