@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       temperature: 0.3,
     });
 
-    return result.toDataStreamResponse();
+    return result.toTextStreamResponse();
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Chat failed";
     console.error("[AgriAegis /chat]", err);
