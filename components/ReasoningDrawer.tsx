@@ -9,17 +9,26 @@ export default function ReasoningDrawer({ steps }: { steps: string[] }) {
 
   useEffect(() => {
     if (!open) return;
-    setVisibleCount(0);
+
     const timers = steps.map((_, i) =>
-      setTimeout(() => setVisibleCount(i + 1), i * 350)
+      setTimeout(() => setVisibleCount((current) => Math.max(current, i + 1)), i * 350)
     );
+
     return () => timers.forEach(clearTimeout);
   }, [open, steps]);
+
+  const handleToggle = () => {
+    const nextOpen = !open;
+    setOpen(nextOpen);
+    if (nextOpen) {
+      setVisibleCount(0);
+    }
+  };
 
   return (
     <div className="bg-slate-900 text-slate-100 rounded-2xl overflow-hidden shadow-xl">
       <button
-        onClick={() => setOpen((v) => !v)}
+        onClick={handleToggle}
         className="w-full px-4 py-3 flex items-center justify-between hover:bg-slate-800 transition"
       >
         <span className="flex items-center gap-2 font-semibold">

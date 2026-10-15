@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       system: CHAT_SYSTEM_PROMPT(language),
       messages,
       temperature: 0.3,
-      maxOutputTokens: 250,
+      maxOutputTokens: 1024,
     });
 
     return result.toTextStreamResponse();
