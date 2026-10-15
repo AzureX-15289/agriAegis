@@ -29,10 +29,7 @@ export const PrescriptionSchema = z.object({
     region: z.string().default("Uttar Pradesh"),
     language: z.string().default("Hindi/Awadhi"),
   }),
-  ocrText: z
-    .string()
-    .optional()
-    .describe("Any extracted or translated text from the uploaded image"),
+  ocrText: z.string().optional(),
   complianceNotice: z.string(),
 });
 

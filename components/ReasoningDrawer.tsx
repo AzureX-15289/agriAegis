@@ -36,11 +36,7 @@ export default function ReasoningDrawer({ steps }: { steps: string[] }) {
       {open && (
         <ol className="px-6 pb-5 space-y-3 text-sm">
           {steps.slice(0, visibleCount).map((step, i) => (
-            <li
-              key={i}
-              className="flex gap-3 animate-fadeIn"
-              style={{ animationDelay: `${i * 80}ms` }}
-            >
+            <li key={i} className="flex gap-3 animate-fadeIn">
               <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-xs font-bold">
                 {i + 1}
               </span>

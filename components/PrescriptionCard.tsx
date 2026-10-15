@@ -12,7 +12,6 @@ const severityStyles: Record<string, string> = {
 export default function PrescriptionCard({ p }: { p: Prescription }) {
   return (
     <div className="space-y-4">
-      {/* Diagnosis header */}
       <div className="bg-white rounded-2xl p-5 shadow border border-slate-200">
         <div className="flex items-start justify-between gap-3 flex-wrap">
           <div>
@@ -43,7 +42,6 @@ export default function PrescriptionCard({ p }: { p: Prescription }) {
         )}
       </div>
 
-      {/* Organic */}
       <div className="bg-emerald-50 rounded-2xl p-5 border border-emerald-200">
         <h3 className="flex items-center gap-2 font-bold text-emerald-900 mb-2">
           <Leaf className="w-5 h-5" /> Organic Remedy
@@ -57,7 +55,6 @@ export default function PrescriptionCard({ p }: { p: Prescription }) {
         </p>
       </div>
 
-      {/* Chemical */}
       <div className="bg-blue-50 rounded-2xl p-5 border border-blue-200">
         <h3 className="flex items-center gap-2 font-bold text-blue-900 mb-2">
           <FlaskConical className="w-5 h-5" /> Chemical Remedy
@@ -72,7 +69,6 @@ export default function PrescriptionCard({ p }: { p: Prescription }) {
         </p>
       </div>
 
-      {/* Prevention */}
       <div className="bg-white rounded-2xl p-5 shadow border border-slate-200">
         <h3 className="font-bold text-slate-900 mb-2">
           Preventive Measures
@@ -84,7 +80,6 @@ export default function PrescriptionCard({ p }: { p: Prescription }) {
         </ul>
       </div>
 
-      {/* Compliance notice */}
       <div className="flex items-start gap-2 bg-amber-50 border border-amber-300 rounded-xl p-3">
         <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
         <p className="text-xs text-amber-900">{p.complianceNotice}</p>

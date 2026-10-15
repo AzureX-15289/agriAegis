@@ -4,7 +4,7 @@ import { ChatRequestSchema } from "@/lib/schemas";
 import { CHAT_SYSTEM_PROMPT } from "@/lib/prompts";
 import { resolveModel, CHAT_MODEL } from "@/lib/model";
 
-export const maxDuration = 90;
+export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,7 +19,6 @@ export async function POST(req: NextRequest) {
     }
 
     const { messages, language } = parsed.data;
-    console.log(`[AgriAegis /chat] model=${CHAT_MODEL} lang=${language}`);
 
     const result = streamText({
       model: resolveModel(CHAT_MODEL),
