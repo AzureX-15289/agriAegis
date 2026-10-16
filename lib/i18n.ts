@@ -4,6 +4,7 @@ interface Strings {
   brand: string;
   tagline: string;
   heroTitle: string;
+  heroHighlight: string;
   heroSubtitle: string;
   step1: string;
   step2: string;
@@ -28,6 +29,7 @@ export const translations: Record<Language, Strings> = {
     brand: "AgriAegis",
     tagline: "Multilingual crop advisor",
     heroTitle: "See the crop. Speak your language. Protect the harvest.",
+    heroHighlight: "Speak your language.",
     heroSubtitle:
       "Upload a photo of an affected crop and get a structured diagnosis with organic and chemical remedies, dosage per bigha, and the reasoning behind every recommendation.",
     step1: "1. Upload crop photo",
@@ -57,6 +59,7 @@ export const translations: Record<Language, Strings> = {
     brand: "एग्रीईजिस",
     tagline: "बहुभाषी फसल सलाहकार",
     heroTitle: "फसल देखें। अपनी भाषा में बोलें। उपज बचाएँ।",
+    heroHighlight: "अपनी भाषा में बोलें।",
     heroSubtitle:
       "प्रभावित फसल की फोटो अपलोड करें और जैविक व रासायनिक उपचार, प्रति बीघा मात्रा, और हर सिफारिश के पीछे का कारण सहित संरचित निदान प्राप्त करें।",
     step1: "1. फसल की फोटो अपलोड करें",
@@ -86,6 +89,7 @@ export const translations: Record<Language, Strings> = {
     brand: "एग्रीईजिस",
     tagline: "बहुभाषी फसल सलाहकार",
     heroTitle: "फसल देखीं। अपनी भाषा में बोलीं। उपज बचाईं।",
+    heroHighlight: "अपनी भाषा में बोलीं।",
     heroSubtitle:
       "प्रभावित फसल कय फोटो अपलोड करीं अउर जैविक अउर रासायनिक इलाज, प्रति बीघा मात्रा सहित संरचित निदान पाईं।",
     step1: "1. फसल कय फोटो अपलोड करीं",

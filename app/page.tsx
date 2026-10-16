@@ -94,7 +94,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-[#f5f0e6]">
       <header className="border-b border-slate-200 bg-white/90 backdrop-blur sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center">
@@ -104,7 +104,7 @@ export default function Home() {
             <h1 className="text-base font-bold text-slate-900 leading-tight">
               {strings.brand}
             </h1>
-            <p className="text-xs text-slate-500 leading-tight">
+            <p className="text-xs text-orange-600 leading-tight">
               {strings.tagline}
             </p>
           </div>
@@ -125,7 +125,24 @@ export default function Home() {
 
       <section className="max-w-6xl mx-auto px-6 pt-10 pb-6">
         <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-          {strings.heroTitle}
+          {(() => {
+            const highlightIndex = strings.heroTitle.indexOf(
+              strings.heroHighlight
+            );
+            if (highlightIndex < 0) return strings.heroTitle;
+
+            return (
+              <>
+                {strings.heroTitle.slice(0, highlightIndex)}
+                <span className="text-orange-600">
+                  {strings.heroHighlight}
+                </span>
+                {strings.heroTitle.slice(
+                  highlightIndex + strings.heroHighlight.length
+                )}
+              </>
+            );
+          })()}
         </h2>
         <p className="mt-3 text-slate-600 max-w-2xl">{strings.heroSubtitle}</p>
       </section>
