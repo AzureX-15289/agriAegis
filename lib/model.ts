@@ -17,7 +17,7 @@ export function resolveModel(name: string = PRIMARY_MODEL) {
 export async function withModelFallback<T>(
   fn: (modelName: string) => Promise<T>
 ): Promise<T> {
-  const candidates = [PRIMARY_MODEL, ...FALLBACK_MODELS];
+  const candidates = [...new Set([PRIMARY_MODEL, ...FALLBACK_MODELS])];
   let lastErr: unknown;
 
   for (const name of candidates) {

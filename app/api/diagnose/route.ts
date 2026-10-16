@@ -26,6 +26,11 @@ export async function POST(req: NextRequest) {
         model: resolveModel(modelName),
         schema: PrescriptionSchema,
         system: AGRI_SYSTEM_PROMPT(language),
+        repairText: async ({ text }) => {
+          const start = text.indexOf("{");
+          const end = text.lastIndexOf("}");
+          return start >= 0 && end > start ? text.slice(start, end + 1) : null;
+        },
         messages: [
           {
             role: "user",
