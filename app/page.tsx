@@ -9,7 +9,7 @@ import ChatPanel from "@/components/ChatPanel";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/lib/LanguageContext";
 import { t } from "@/lib/i18n";
-import type { Prescription } from "@/lib/schemas";
+import { PrescriptionSchema, type Prescription } from "@/lib/schemas";
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -52,9 +52,39 @@ export default function Home() {
           language,
         }),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Diagnosis failed");
-      setResult(data.prescription);
+      const responseText = await res.text();
+      let data: unknown;
+      try {
+        data = JSON.parse(responseText);
+      } catch {
+        if (res.status === 504 || res.status === 524) {
+          throw new Error("Diagnosis took too long. Please try again.");
+        }
+        throw new Error(
+          `Diagnosis service returned an invalid response (HTTP ${res.status}).`
+        );
+      }
+
+      if (!data || typeof data !== "object") {
+        throw new Error("Diagnosis service returned an invalid response.");
+      }
+
+      const responseData = data as Record<string, unknown>;
+      if (!res.ok) {
+        throw new Error(
+          typeof responseData.error === "string"
+            ? responseData.error
+            : `Diagnosis failed (HTTP ${res.status}).`
+        );
+      }
+
+      const prescription = PrescriptionSchema.safeParse(
+        responseData.prescription
+      );
+      if (!prescription.success) {
+        throw new Error("Diagnosis service returned an invalid prescription.");
+      }
+      setResult(prescription.data);
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : "Something went wrong";
       setError(msg);

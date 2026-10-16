@@ -4,7 +4,7 @@ import { PrescriptionSchema, DiagnoseRequestSchema } from "@/lib/schemas";
 import { AGRI_SYSTEM_PROMPT } from "@/lib/prompts";
 import { withModelFallback, resolveModel } from "@/lib/model";
 
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 export async function POST(req: NextRequest) {
   try {
