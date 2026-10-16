@@ -38,7 +38,7 @@ export const translations: Record<Language, Strings> = {
     uploadHint: "JPG, PNG, or HEIC",
     notesPlaceholder: "Describe the symptoms, crop variety, or paste vernacular text…",
     diagnose: "Diagnose Crop",
-    analyzing: "Analyzing crop… (10–20s)",
+    analyzing: "Analyzing crop… (60–90s)",
     emptyTitle: "Your diagnosis will appear here",
     emptySubtitle:
       "Upload a crop photo and click Diagnose to see the structured prescription with reasoning steps.",
@@ -68,7 +68,7 @@ export const translations: Record<Language, Strings> = {
     uploadHint: "JPG, PNG, या HEIC",
     notesPlaceholder: "लक्षण, फसल की किस्म, या स्थानीय भाषा का पाठ लिखें…",
     diagnose: "फसल का निदान करें",
-    analyzing: "फसल का विश्लेषण हो रहा है… (10–20 सेकंड)",
+    analyzing: "फसल का विश्लेषण हो रहा है… (60–90 सेकंड)",
     emptyTitle: "आपका निदान यहाँ दिखाई देगा",
     emptySubtitle:
       "फसल की फोटो अपलोड करें और निदान बटन दबाएँ।",
@@ -98,7 +98,7 @@ export const translations: Record<Language, Strings> = {
     uploadHint: "JPG, PNG, या HEIC",
     notesPlaceholder: "लक्षण, फसल कय किस्म, या स्थानीय भाषा कय पाठ लिखीं…",
     diagnose: "फसल कय निदान करीं",
-    analyzing: "फसल कय विश्लेषण हो रहा है… (10–20 सेकंड)",
+    analyzing: "फसल कय विश्लेषण हो रहा है… (60–90 सेकंड)",
     emptyTitle: "आप कय निदान इहाँ देखाई दीही",
     emptySubtitle: "फसल कय फोटो अपलोड करीं अउर निदान बटन दबाईं।",
     chatTitle: "आगे कवनो सवाल पूछीं",
